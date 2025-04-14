@@ -1,0 +1,12 @@
+fastapi
+mangum
+httpx
+uvicorn
+groq
+instructor
+pydantic>=2.0.0
+pytest
+pytest-asyncio
+httpx
+requests
+python-multipart
