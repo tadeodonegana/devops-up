@@ -1,6 +1,10 @@
+# tests/test_app.py
 import unittest
 from unittest.mock import patch, MagicMock
 from fastapi.testclient import TestClient
+import os
+
+os.environ["GROQ_API_KEY"] = "mock-api-key-for-testing"
 
 from main import app
 
