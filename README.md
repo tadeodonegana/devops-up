@@ -1,5 +1,7 @@
 # Tote Backend
 
+[![codecov](https://codecov.io/gh/tadeodonegana/devops-up/graph/badge.svg?token=HXSTTPC2P6)](https://codecov.io/gh/tadeodonegana/devops-up)
+
 ## Features
 
 - **Product Recommendations**: Get personalized product recommendations based on your shopping list.
