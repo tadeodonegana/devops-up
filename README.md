@@ -157,19 +157,42 @@ The application includes Mangum for AWS Lambda compatibility. To deploy:
 
 ### Testing
 
-The test suite uses mocking to avoid needing a real Groq API key for tests. You can run tests with pytest:
+The application includes a comprehensive test suite with unit tests and integration tests:
 
 ```bash
+# Run all tests
 pytest
-```
 
-If you want to run specific test files:
+# Run tests with coverage report
+pytest --cov=. tests/
 
-```bash
+# Run specific test files
 pytest tests/test_app.py -v
+pytest tests/test_services.py -v
+pytest tests/test_schemas.py -v
 ```
 
-All tests should pass without requiring any environment variables to be set, but if you encounter any issues, make sure your development environment is properly set up.
+The tests are structured as follows:
+- `test_app.py`: Tests the API endpoints with mocked service functions
+- `test_services.py`: Tests service functions with mocked Groq API
+- `test_schemas.py`: Tests Pydantic schema validation
+- `test_integration.py`: Integration tests for the API with mocked Groq client
+
+All tests are designed to run without a real Groq API key. The test suite uses mocks to simulate API responses, making it easy to run in CI environments.
+
+### GitHub CI/CD Workflow
+
+The project includes GitHub Actions workflows for:
+
+1. **PR Tests**: Runs whenever a PR is opened, synchronized, or reopened
+   - Runs all tests with coverage reporting
+   - Uploads coverage reports to Codecov
+   - Comments on the PR with test results
+
+2. **Deploy Workflow**: Runs on pushes to the main branch and PRs
+   - Runs all tests with coverage reporting
+   - For main branch only: Builds and pushes Docker image
+   - For main branch only: Deploys to Render
 
 ### Testing with a Real API Key
 

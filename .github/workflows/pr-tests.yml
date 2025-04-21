@@ -8,6 +8,9 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
+    env:
+      CI: true
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY || 'test_api_key' }}
     steps:
       - uses: actions/checkout@v4
       
@@ -21,9 +24,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
-      - name: Run tests
+      - name: Run tests with coverage
         run: |
-          python -m pytest tests/ -v
+          python -m pytest --cov=. --cov-report=xml --cov-report=term tests/ -v
+      
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+          fail_ci_if_error: false
       
       - name: Add PR test summary comment
         if: always()
