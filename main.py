@@ -10,6 +10,13 @@ from schemas import (
     CategorizationResponse,
 )
 import services
+import sentry_sdk
+sentry_sdk.init(
+    dsn="https://45d96cc649186cfbb6feb39753ff005c@o4509340585099264.ingest.us.sentry.io/4509340587720704",
+    # Add data like request headers and IP for users,
+    # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+    send_default_pii=True,
+)
 
 app = FastAPI(
     title="Tote Backend API",
@@ -56,6 +63,10 @@ async def categorize_products_endpoint(request: CategorizationRequest):
     except Exception as e:
         print("Error in categorize_products_endpoint:", e)
         raise HTTPException(status_code=500, detail="Failed to categorize products")
+
+@app.get("/sentry-debug")
+async def trigger_error():
+    division_by_zero = 1 / 0
 
 # AWS Lambda handler
 handler = Mangum(app)
