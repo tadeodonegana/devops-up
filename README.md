@@ -7,6 +7,7 @@
 - **Product Recommendations**: Get personalized product recommendations based on your shopping list.
 - **Dish Ingredients**: Get a list of ingredients needed for specific dishes.
 - **Product Categorization**: Categorize products into appropriate supermarket categories.
+- **Health Check**: Check the health of the API.
 
 ## Prerequisites
 
