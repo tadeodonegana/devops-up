@@ -26,6 +26,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
 @app.post("/recommendations", response_model=RecommendationResponse)
 async def recommendations_endpoint(request: RecommendationRequest):
     try:
