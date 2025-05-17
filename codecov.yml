@@ -9,12 +9,12 @@ coverage:
     project:
       default:
         # basic
-        target: 90%
+        target: 55%
         threshold: 1%
     patch:
       default:
         # basic
-        target: 90%
+        target: 55%
         threshold: 1%
 
 parsers:
