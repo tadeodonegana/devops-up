@@ -8,6 +8,7 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
+    permissions: write-all
     env:
       CI: true
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY || 'test_api_key' }}
