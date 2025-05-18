@@ -214,3 +214,5 @@ GROQ_API_KEY=your-api-key-here pytest
 - The application uses Groq's LLaMa 3.3 70B model for all AI functionalities.
 - All responses are provided in Spanish, tailored for users in Argentina.
 - The Instructor library is used to format LLM responses according to Pydantic models.
+
+Test PR
