@@ -70,8 +70,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-      - name: Deploy to Render
+      - name: Deploy to Render with specific version
         env:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          image_tag: docker.io%2Ftadeodonegana%2Ftote-backend%3Acf7cc04f9ea7ea589ffa0ec2b0db888783f97575
         run: |
-          curl "$deploy_url" 
+          curl "${deploy_url}&imgURL=${image_tag}" 
