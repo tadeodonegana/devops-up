@@ -82,6 +82,10 @@ async def categorize_products_endpoint(request: CategorizationRequest):
         print("Error in categorize_products_endpoint:", e)
         raise HTTPException(status_code=500, detail="Failed to categorize products")
 
+@app.get("/latest-version")
+async def latest_version():
+    return {"version": "latest"}
+
 @app.get("/sentry-debug")
 async def trigger_error():
     sentry_logger.warning('Debug endpoint called - about to trigger an error')
